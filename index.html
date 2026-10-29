@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CESE-IA | Especialização em Agentes de IA em Sistemas Elétricos</title>
+  <title>CESE-IA | Especialização em Agentes de IA em Sistemas Elétricos - UNIFEI</title>
+  <meta name="description" content="Curso de Especialização em Sistemas Elétricos com Agentes de IA da UNIFEI. Integrando LLMs, multiagentes, OpenDSS, PyPSA, CIM e segurança regulatória.">
+  <meta name="theme-color" content="#05070f">
   <link rel="icon" type="image/png" href="https://unifei.edu.br/wp-content/uploads/2022/08/cropped-logo-unifei-grande-32x32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +13,31 @@
   <style>
     :root {
       --bg-dark: #05070f;
+      --bg-dark-elevated: #0b1120;
+      --bg-card: rgba(15, 23, 42, 0.72);
+      --bg-card-hover: rgba(30, 41, 59, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(124, 58, 237, 0.45);
+      --border-hover: rgba(56, 189, 248, 0.4);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --grad-primary: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #06b6d4 100%);
+      --grad-glow: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(59, 130, 246, 0.15) 50%, rgba(6, 182, 212, 0.15) 100%);
+      --grad-dark: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(5, 7, 15, 1) 100%);
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.25);
+      --shadow-glow: 0 10px 30px rgba(124, 58, 237, 0.35);
       --bg-card: rgba(15, 23, 42, 0.65);
       --bg-card-hover: rgba(30, 41, 59, 0.8);
       --border-color: rgba(255, 255, 255, 0.08);
@@ -85,10 +112,47 @@
     .nav-container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 1.2rem 2rem;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.55rem;
+      color: var(--text-main);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      width: 42px;
+      height: 42px;
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-menu-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
     .logo {
@@ -454,84 +518,203 @@
       color: var(--text-main);
     }
 
-    .module-product {
-      margin-top: 1.4rem;
-      padding: 1rem 1.2rem;
-      border: 1px solid rgba(6, 182, 212, 0.18);
-      border-radius: 12px;
-      background: rgba(6, 182, 212, 0.06);
-    }
-
-    .module-product strong {
-      color: var(--accent-cyan);
-      font-size: 0.9rem;
-    }
-
-    .module-product p {
-      margin-top: 0.35rem;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav-container {
-        padding: 0.8rem 1rem;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .logo {
-        font-size: 1.2rem;
-      }
-
-      .logo img {
-        width: 38px;
-        height: 38px;
-      }
-
-      .logo-badge {
-        font-size: 1.35rem;
+    /* Mobile Drawer & Modern Responsive System */
+    @media (max-width: 868px) {
+      .mobile-menu-btn {
+        display: inline-flex;
       }
 
       .nav-links {
-        order: 3;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: rgba(5, 7, 15, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        padding: 1.8rem 1.5rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+        z-index: 999;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links li {
         width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
+        text-align: center;
       }
 
       .nav-links a {
-        font-size: 0.8rem;
+        display: block;
+        padding: 0.75rem 1rem;
+        font-size: 1.05rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.03);
       }
 
       .btn-nav {
-        padding: 0.5rem 0.9rem;
-        font-size: 0.8rem;
+        display: inline-flex;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Mobile First & Responsive Refinements */
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        padding: 7rem 1.25rem 4rem;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+        letter-spacing: -0.8px;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 1.02rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        padding: 0 0.5rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.85rem;
+      }
+
+      .btn-primary, .btn-secondary, .btn-email {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      .highlights, .tools-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1.25rem;
+        gap: 1.25rem;
+        margin-bottom: 5rem;
+      }
+
+      .tools-section {
+        padding: 0 1.25rem;
+        margin-bottom: 5rem;
+      }
+
+      .section-header {
+        margin-bottom: 2.5rem;
+        padding: 0 1rem;
+      }
+
+      .section-title {
+        font-size: 1.85rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.95rem;
+      }
+
+      .syllabus-section {
+        padding: 0 1.25rem;
+        margin-bottom: 5rem;
       }
 
       .accordion-header {
-        padding: 1.2rem;
+        padding: 1.1rem 1.25rem;
         gap: 0.75rem;
       }
 
       .accordion-title-wrap {
         align-items: flex-start;
-        gap: 0.75rem;
+        gap: 0.6rem;
       }
 
       .accordion-header h3 {
-        font-size: 1rem;
+        font-size: 0.98rem;
+        line-height: 1.35;
       }
 
       .module-badge {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.55rem;
+        font-size: 0.72rem;
+        padding: 0.2rem 0.5rem;
       }
 
       .accordion-content {
-        padding-left: 1.2rem;
-        padding-right: 1.2rem;
+        padding: 0 1.25rem 1.5rem;
+      }
+
+      .accordion-content li {
+        font-size: 0.9rem;
+      }
+
+      .cta-banner {
+        padding: 0 1.25rem;
+        margin-bottom: 5rem;
+      }
+
+      .cta-inner {
+        padding: 3rem 1.5rem;
+        border-radius: 24px;
+      }
+
+      .cta-inner h2 {
+        font-size: 1.85rem;
+      }
+
+      .cta-inner p {
+        font-size: 0.98rem;
+      }
+
+      .email-contact-box {
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+      }
+
+      .email-contact-box .recipient-info {
+        font-size: 0.92rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-pill {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .logo-badge {
+        font-size: 1.25rem;
+      }
+
+      .logo img {
+        width: 34px;
+        height: 34px;
+      }
+
+      .btn-nav {
+        display: none;
       }
     }
 
@@ -548,6 +731,12 @@
     @media (max-width: 768px) {
       .info-grid {
         grid-template-columns: 1fr;
+        padding: 0 1.25rem;
+        margin-bottom: 5rem;
+      }
+
+      .info-card {
+        padding: 1.75rem 1.5rem;
       }
     }
 
@@ -613,9 +802,97 @@
 
     .cta-inner p {
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto 2rem;
       font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .btn-email {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: var(--grad-primary);
+      color: #fff;
+      padding: 1.05rem 2.4rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-email:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(6, 182, 212, 0.45);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-email svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .email-contact-box {
+      margin-top: 1.75rem;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .email-contact-box .coordinator-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .email-contact-box .coordinator-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+
+    .email-contact-box .coordinator-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 0.98rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      word-break: break-all;
+    }
+
+    .email-contact-box .coordinator-email:hover {
+      color: #ffffff;
+      text-decoration: underline;
     }
 
     /* Footer */
@@ -647,17 +924,27 @@
   <!-- Header / Navigation -->
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">
-        <img src="CESE-IA.png" alt="">
+      <a href="#" class="logo" aria-label="CESE-IA Página Inicial">
+        <img src="CESE-IA.png" alt="Logo CESE-IA">
         <span class="logo-badge">CESE-IA</span>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#pilares">Diferenciais</a></li>
         <li><a href="#ferramentas-sep">Ferramentas SEP</a></li>
         <li><a href="#ementa">Ementa Completa</a></li>
         <li><a href="#requisitos">Público & Requisitos</a></li>
+        <li><a href="#contato">Mais Informações</a></li>
       </ul>
-      <a href="#novidades" class="btn-nav">Em breve</a>
+      <div class="nav-actions">
+        <a href="#contato" class="btn-nav">Mais Informações</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Alternar menu de navegação" aria-expanded="false">
+          <svg viewBox="0 0 24 24" id="hamburgerIcon">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -665,13 +952,13 @@
   <section class="hero">
     <div class="hero-pill">Pós-Graduação & Especialização Avançada</div>
     <h1 class="hero-title">
-      Sistemas Elétricos de Potência com <span class="text-gradient">Agentes de IA</span>
+      Curso de Especialização em Sistemas Elétricos de Potência com <span class="text-gradient">Agentes de IA</span>
     </h1>
     <p class="hero-subtitle">
       Capacitação executiva e técnica para integrar LLMs, ecossistemas multiagentes, RAG e guardrails determinísticos à operação, regulação, proteção e planejamento do setor elétrico.
     </p>
     <div class="hero-ctas">
-      <a href="#novidades" class="btn-primary">Inscrições em breve</a>
+      <a href="#contato" class="btn-primary">Mais Informações</a>
       <a href="#ementa" class="btn-secondary">Explorar os 8 Módulos</a>
     </div>
   </section>
@@ -778,10 +1065,6 @@
             <li><strong>Padrões de raciocínio agêntico:</strong> Arquiteturas ReAct e Plan-and-Solve, memória operacional, autorreflexão, correção de código e tratamento de exceções em tempo de execução.</li>
             <li><strong>Frameworks e orquestração:</strong> Desenvolvimento com LangChain, LangGraph, LlamaIndex, CrewAI e AutoGen aplicado a problemas do setor elétrico.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Protótipo de agente de engenharia que recebe uma solicitação em linguagem natural, transforma parâmetros em entrada estruturada e consulta uma ferramenta de cálculo em ambiente de testes.</p>
-          </div>
         </div>
       </div>
 
@@ -799,10 +1082,6 @@
             <li><strong>Protocolos de comunicação entre agentes e ferramentas:</strong> Implementação de Model Context Protocol (MCP), REST, gRPC e barramentos de mensagens como Kafka e MQTT.</li>
             <li><strong>Gateways agênticos para SCADA/EMS e GIS:</strong> Integração segura com sistemas de gerenciamento de energia e distribuição e ferramentas de geoprocessamento, sem comprometer a operação em tempo real.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Adaptador de dados de rede baseado em CIM ou IEC 61850 e um servidor MCP de demonstração que conecta o agente a dados e ferramentas simulados.</p>
-          </div>
         </div>
       </div>
 
@@ -820,10 +1099,6 @@
             <li><strong>Infraestrutura crítica e dados sigilosos:</strong> LGPD, diretrizes de segurança cibernética para energia e técnicas de anonimização de topologias, dados pessoais e informações industriais.</li>
             <li><strong>Prevenção de ataques e vazamentos:</strong> Mitigação de prompt injection, proteção contra exposição de dados em APIs externas e estratégias de implantação privada ou local com Ollama, vLLM e computação confidencial.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Camada de guardrails com regras determinísticas, tratamento de dados sensíveis e conjunto de testes para avaliar respostas seguras em cenários simulados do setor elétrico.</p>
-          </div>
         </div>
       </div>
 
@@ -841,10 +1116,6 @@
             <li><strong>Análise de contingências N-1/N-2 com guardrails:</strong> Varredura de contingências, classificação de severidade e geração de pareceres explicáveis dentro de restrições operacionais.</li>
             <li><strong>Copilotos para centros de controle:</strong> Interfaces em linguagem natural para consulta a alarmes SCADA/EMS e busca em manuais operacionais do ONS e de concessionárias.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Fluxo de análise de contingências que executa estudos em uma rede de teste e gera relatório priorizado com resultados, justificativas e limites operacionais considerados.</p>
-          </div>
         </div>
       </div>
 
@@ -862,10 +1133,6 @@
             <li><strong>Auditoria e trilha de rastreabilidade:</strong> Registro verificável das fontes, etapas e decisões dos agentes em transações financeiras e análises regulatórias.</li>
             <li><strong>Contratos, leilões e risco:</strong> Verificação de enquadramento tarifário (TUST/TUSD), análise de riscos em derivativos e apoio à negociação nos mercados livre (ACL) e regulado (ACR).</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Assistente RAG para consulta a documentos regulatórios, com respostas vinculadas às fontes e geração de trilha de auditoria para revisão humana.</p>
-          </div>
         </div>
       </div>
 
@@ -883,10 +1150,6 @@
             <li><strong>Validação de configurações IEC 61850:</strong> Verificação de arquivos SCL/SCD, consistência de mensagens GOOSE/SV e conformidade de esquemas de proteção.</li>
             <li><strong>Qualidade da energia e PRODIST:</strong> Classificação de afundamentos, harmônicos e outros distúrbios, com geração de relatórios de conformidade regulatória.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Ferramenta de apoio ao diagnóstico que processa arquivos COMTRADE de exemplo e produz relatório explicável de eventos, atuação de proteção ou indicadores de qualidade de energia.</p>
-          </div>
         </div>
       </div>
 
@@ -904,10 +1167,6 @@
             <li><strong>Usinas híbridas e armazenamento:</strong> Apoio à otimização de despacho de sistemas solar, eólico e BESS e ao gerenciamento de microrredes.</li>
             <li><strong>Previsão de demanda e clima:</strong> Integração com modelos estatísticos e bayesianos para previsão multivariada de geração sob incertezas climáticas.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Painel experimental de previsão e apoio ao despacho de recursos renováveis e armazenamento, com cenários de incerteza testados em microrrede simulada.</p>
-          </div>
         </div>
       </div>
 
@@ -924,10 +1183,6 @@
             <li><strong>Desenvolvimento de solução industrial de ponta a ponta:</strong> Projeto aplicado a um desafio real, como assistente operacional de subestação, auditor regulatório com trilha de auditoria ou diagnóstico de falhas COMTRADE.</li>
             <li><strong>Confiabilidade e benchmarking:</strong> Avaliação com LLM-as-a-Judge e Ragas, métricas de latência e alucinação, análise de segurança cibernética e validação técnica em ambiente simulado.</li>
           </ul>
-          <div class="module-product">
-            <strong>Produto possível</strong>
-            <p>Projeto integrador demonstrável e documentado — como copiloto de operação, auditor regulatório ou diagnosticador de falhas — acompanhado de testes, métricas, avaliação de riscos e validação em simulação.</p>
-          </div>
         </div>
       </div>
 
@@ -950,12 +1205,23 @@
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="cta-banner" id="novidades">
+  <!-- CTA & Contact Section -->
+  <section class="cta-banner" id="contato">
     <div class="cta-inner">
-      <h2>Inscrições em breve</h2>
-      <p>Estamos preparando a próxima turma do CESE-IA. Em breve, divulgaremos novidades e informações sobre o processo de inscrição.</p>
-      <span class="btn-primary coming-soon">Em breve</span>
+      <h2>Mais Informações</h2>
+      <p>Tem dúvidas sobre a ementa, cronograma, corpo docente ou processo de ingresso? Entre em contato diretamente com a coordenação do curso.</p>
+      
+      <div class="cta-actions">
+        <a href="mailto:Prof.%20Dr.%20Carlos%20Moraes%20%3Cvalerio@unifei.edu.br%3E?subject=CESE-IA%20-%20Solicita%C3%A7%C3%A3o%20de%20Informa%C3%A7%C3%B5es&body=Ol%C3%A1%20Prof.%20Dr.%20Carlos%20Moraes%2C%0A%0AGostaria%20de%20solicitar%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso%20de%20Especializa%C3%A7%C3%A3o%20CESE-IA%20(Sistemas%20El%C3%A9tricos%20com%20Agentes%20de%20IA)%20da%20UNIFEI.%0A%0ANome%3A%20%0AForma%C3%A7%C3%A3o%2FInstitui%C3%A7%C3%A3o%3A%20%0AContato%3A%20%0A%0AObrigado(a)!" class="btn-email">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>Mais Informações via E-mail</span>
+        </a>
+
+        
+      </div>
     </div>
   </section>
 
@@ -965,20 +1231,66 @@
     <p>© 2026 CESE-IA <a href="https://www.unifei.edu.br" target="_blank" rel="noopener noreferrer">UNIFEI</a> Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Smooth scrolling for navigation links -->
+  <!-- Navigation & Responsive Interaction Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      if (mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('active');
+          mobileBtn.setAttribute('aria-expanded', isOpen);
+          mobileBtn.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+          
+          // Switch between hamburger and close icons
+          if (isOpen) {
+            mobileBtn.innerHTML = `
+              <svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>`;
+          } else {
+            mobileBtn.innerHTML = `
+              <svg viewBox="0 0 24 24">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>`;
+          }
+        });
+      }
+
+      // Smooth scroll and auto-close mobile drawer on link click
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-          e.preventDefault();
           const targetId = this.getAttribute('href');
           if (targetId === '#') return;
           
+          e.preventDefault();
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+            // Close mobile menu if open
+            if (navLinks && navLinks.classList.contains('active')) {
+              navLinks.classList.remove('active');
+              if (mobileBtn) {
+                mobileBtn.setAttribute('aria-expanded', 'false');
+                mobileBtn.innerHTML = `
+                  <svg viewBox="0 0 24 24">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                  </svg>`;
+              }
+            }
+
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
             });
           }
         });
