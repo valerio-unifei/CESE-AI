@@ -102,6 +102,12 @@
       text-decoration: none;
     }
 
+    .logo img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
     .logo-badge {
       background: var(--grad-primary);
       -webkit-background-clip: text;
@@ -146,6 +152,11 @@
       background: var(--text-main);
       color: var(--bg-dark);
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .coming-soon {
+      cursor: default;
+      opacity: 0.85;
     }
 
     /* Hero Section */
@@ -290,6 +301,55 @@
       font-size: 0.95rem;
     }
 
+    .tools-section {
+      max-width: 1280px;
+      margin: 0 auto 8rem;
+      padding: 0 2rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tool-card {
+      min-height: 100%;
+    }
+
+    .tool-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tool-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .tool-output {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-size: 0.88rem;
+    }
+
+    .tool-output strong {
+      color: var(--accent-cyan);
+    }
+
+    .tools-note {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.06);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
     /* Section Headers */
     .section-header {
       text-align: center;
@@ -331,18 +391,11 @@
       transition: border-color 0.3s ease;
     }
 
-    .accordion-item.active {
-      border-color: var(--accent-purple);
-      background: rgba(20, 28, 48, 0.8);
-    }
-
     .accordion-header {
       padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
-      user-select: none;
     }
 
     .accordion-title-wrap {
@@ -369,35 +422,7 @@
       font-weight: 600;
     }
 
-    .accordion-toggle {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease;
-      font-size: 1.2rem;
-      color: var(--text-muted);
-    }
-
-    .accordion-item.active .accordion-toggle {
-      transform: rotate(45deg);
-      background: var(--accent-purple);
-      color: #fff;
-    }
-
     .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
-      padding: 0 2rem;
-    }
-
-    .accordion-item.active .accordion-content {
-      max-height: 1000px;
-      transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
       padding: 0 2rem 1.8rem;
     }
 
@@ -427,6 +452,87 @@
 
     .accordion-content li strong {
       color: var(--text-main);
+    }
+
+    .module-product {
+      margin-top: 1.4rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(6, 182, 212, 0.18);
+      border-radius: 12px;
+      background: rgba(6, 182, 212, 0.06);
+    }
+
+    .module-product strong {
+      color: var(--accent-cyan);
+      font-size: 0.9rem;
+    }
+
+    .module-product p {
+      margin-top: 0.35rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0.8rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .logo img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .logo-badge {
+        font-size: 1.35rem;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+      }
+
+      .btn-nav {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.8rem;
+      }
+
+      .accordion-header {
+        padding: 1.2rem;
+        gap: 0.75rem;
+      }
+
+      .accordion-title-wrap {
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .accordion-header h3 {
+        font-size: 1rem;
+      }
+
+      .module-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.55rem;
+      }
+
+      .accordion-content {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
     }
 
     /* Target Audience & Prerequisites */
@@ -524,6 +630,13 @@
     footer p {
       margin-top: 0.5rem;
     }
+
+    .footer-logo {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
@@ -535,14 +648,16 @@
   <header>
     <div class="nav-container">
       <a href="#" class="logo">
+        <img src="CESE-IA.png" alt="">
         <span class="logo-badge">CESE-IA</span>
       </a>
       <ul class="nav-links">
         <li><a href="#pilares">Diferenciais</a></li>
+        <li><a href="#ferramentas-sep">Ferramentas SEP</a></li>
         <li><a href="#ementa">Ementa Completa</a></li>
         <li><a href="#requisitos">Público & Requisitos</a></li>
       </ul>
-      <a href="#inscrever" class="btn-nav">Inscrições Abertas</a>
+      <a href="#novidades" class="btn-nav">Em breve</a>
     </div>
   </header>
 
@@ -556,7 +671,7 @@
       Capacitação executiva e técnica para integrar LLMs, ecossistemas multiagentes, RAG e guardrails determinísticos à operação, regulação, proteção e planejamento do setor elétrico.
     </p>
     <div class="hero-ctas">
-      <a href="#inscrever" class="btn-primary">Garantir Minha Vaga</a>
+      <a href="#novidades" class="btn-primary">Inscrições em breve</a>
       <a href="#ementa" class="btn-secondary">Explorar os 8 Módulos</a>
     </div>
   </section>
@@ -585,31 +700,88 @@
     </div>
   </section>
 
+  <!-- Possible AI tools for power systems -->
+  <section class="tools-section" id="ferramentas-sep">
+    <div class="section-header">
+      <h2 class="section-title">Ferramentas de SEP com Agentes de IA</h2>
+      <p class="section-subtitle">Exemplos de aplicações que podem ser projetadas e prototipadas para apoiar estudos, operação, proteção e planejamento de sistemas elétricos de potência.</p>
+    </div>
+
+    <div class="tools-grid">
+      <article class="card tool-card">
+        <div class="card-icon">🔎</div>
+        <h3>Copiloto de estudos de rede</h3>
+        <p>Interpreta solicitações técnicas, prepara casos e coordena ferramentas de fluxo de potência e curto-circuito em simuladores como OpenDSS, PyPSA, ANAREDE ou ANAFAS.</p>
+        <div class="tool-output"><strong>Entrega possível:</strong> casos de estudo organizados, resultados comparados e relatório técnico com premissas explícitas.</div>
+      </article>
+
+      <article class="card tool-card">
+        <div class="card-icon">⚡</div>
+        <h3>Analisador de contingências</h3>
+        <p>Orquestra varreduras N-1/N-2 em modelos de rede, classifica violações de tensão ou carregamento e ajuda a comparar cenários e alternativas de mitigação.</p>
+        <div class="tool-output"><strong>Entrega possível:</strong> ranking de contingências críticas, evidências dos cálculos e resumo para revisão do engenheiro.</div>
+      </article>
+
+      <article class="card tool-card">
+        <div class="card-icon">🛠️</div>
+        <h3>Assistente de proteção e oscilografia</h3>
+        <p>Auxilia na leitura de registros COMTRADE, correlaciona eventos e grandezas com ajustes e funções de proteção e organiza evidências para análise de perturbações.</p>
+        <div class="tool-output"><strong>Entrega possível:</strong> linha do tempo do evento e minuta de relatório de diagnóstico para validação especializada.</div>
+      </article>
+
+      <article class="card tool-card">
+        <div class="card-icon">📡</div>
+        <h3>Copiloto de operação e alarmes</h3>
+        <p>Consulta alarmes, manuais e procedimentos autorizados por linguagem natural, relacionando informações de SCADA/EMS ou DMS em uma camada de consulta controlada.</p>
+        <div class="tool-output"><strong>Entrega possível:</strong> resumo contextualizado do estado da rede, alarmes relacionados e referências aos procedimentos consultados.</div>
+      </article>
+
+      <article class="card tool-card">
+        <div class="card-icon">📚</div>
+        <h3>Assistente regulatório do setor elétrico</h3>
+        <p>Pesquisa procedimentos de rede, normas, resoluções e documentos de mercado com recuperação de fontes para apoiar análises de conformidade e consultas técnicas.</p>
+        <div class="tool-output"><strong>Entrega possível:</strong> respostas com referências verificáveis e checklist de requisitos para análise humana.</div>
+      </article>
+
+      <article class="card tool-card">
+        <div class="card-icon">🌱</div>
+        <h3>Planejador de renováveis e microrredes</h3>
+        <p>Coordena modelos de previsão e simulação para explorar cenários de geração renovável, armazenamento BESS, demanda e operação de microrredes.</p>
+        <div class="tool-output"><strong>Entrega possível:</strong> comparação de cenários de despacho e indicadores técnicos para apoiar decisões de planejamento.</div>
+      </article>
+    </div>
+
+    <p class="tools-note">As aplicações são possibilidades de desenvolvimento educacional e pesquisa. Devem ser validadas com dados e modelos apropriados e utilizadas como apoio à decisão, sem substituir a responsabilidade técnica nem enviar comandos diretamente a sistemas operacionais.</p>
+  </section>
+
   <!-- Syllabus Accordion Section -->
   <section class="syllabus-section" id="ementa">
     <div class="section-header">
       <h2 class="section-title">Ementa do Curso CESE-IA</h2>
-      <p class="section-subtitle">Grade curricular estruturada do conceito aos ecossistemas industriais avançados.</p>
+      <p class="section-subtitle">Conheça os conteúdos e exemplos de produtos que podem ser desenvolvidos ao longo da formação.</p>
     </div>
 
     <div class="accordion">
 
       <!-- Módulo 1 -->
-      <div class="accordion-item active">
+      <div class="accordion-item">
         <div class="accordion-header">
           <div class="accordion-title-wrap">
             <span class="module-badge">Módulo 1</span>
             <h3>Fundamentos de Arquiteturas de Agentes e LLMs para Engenharia</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Engenharia de Prompts e Saídas Estruturadas:</strong> Formatação e validação rigorosa de saídas (JSON, Pydantic) para garantir determinismo e interpretação exata de parâmetros de engenharia.</li>
-            <li><strong>Tool Use e Function Calling:</strong> Conexão de LLMs a motores de cálculo elétrico, APIs de campo e bancos de dados relacionais e vetoriais.</li>
-            <li><strong>Padrões de Raciocínio Agêntico:</strong> Arquiteturas ReAct, Plan-and-Solve, memória operacional, auto-reflexão, correção autônoma de código e tratamento de exceções.</li>
-            <li><strong>Frameworks e Orquestração:</strong> Desenvolvimento prático com LangChain, LangGraph, LlamaIndex, CrewAI e AutoGen focados em problemas de energia.</li>
+            <li><strong>Engenharia de prompts e saídas estruturadas:</strong> Formatação e validação de respostas em JSON e Pydantic para garantir interpretação consistente de parâmetros de engenharia.</li>
+            <li><strong>Uso de ferramentas e chamadas de função:</strong> Conexão de LLMs a motores de cálculo elétrico, APIs de campo e bancos de dados relacionais e vetoriais.</li>
+            <li><strong>Padrões de raciocínio agêntico:</strong> Arquiteturas ReAct e Plan-and-Solve, memória operacional, autorreflexão, correção de código e tratamento de exceções em tempo de execução.</li>
+            <li><strong>Frameworks e orquestração:</strong> Desenvolvimento com LangChain, LangGraph, LlamaIndex, CrewAI e AutoGen aplicado a problemas do setor elétrico.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Protótipo de agente de engenharia que recebe uma solicitação em linguagem natural, transforma parâmetros em entrada estruturada e consulta uma ferramenta de cálculo em ambiente de testes.</p>
+          </div>
         </div>
       </div>
 
@@ -620,14 +792,17 @@
             <span class="module-badge">Módulo 2</span>
             <h3>Interoperabilidade e Integração com Sistemas Elétricos Legados</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Padrões de Dados do Setor Elétrico:</strong> Interoperabilidade baseada no Modelo de Informação Comum — CIM (IEC 61970, IEC 61968) e padronização IEC 61850 em subestações.</li>
-            <li><strong>Protocolos Inter-Agentes:</strong> Implementação do Model Context Protocol (MCP), REST/gRPC e barramentos de mensagens (Kafka, MQTT).</li>
-            <li><strong>Gateways Agênticos para SCADA/EMS e GIS:</strong> Integração segura de agentes com EMS, DMS e geoprocessamento sem comprometer a operação em tempo real.</li>
+            <li><strong>Padrões de dados do setor elétrico:</strong> Interoperabilidade com o Modelo de Informação Comum (CIM, IEC 61970 e IEC 61968) e padronização IEC 61850 para subestações.</li>
+            <li><strong>Protocolos de comunicação entre agentes e ferramentas:</strong> Implementação de Model Context Protocol (MCP), REST, gRPC e barramentos de mensagens como Kafka e MQTT.</li>
+            <li><strong>Gateways agênticos para SCADA/EMS e GIS:</strong> Integração segura com sistemas de gerenciamento de energia e distribuição e ferramentas de geoprocessamento, sem comprometer a operação em tempo real.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Adaptador de dados de rede baseado em CIM ou IEC 61850 e um servidor MCP de demonstração que conecta o agente a dados e ferramentas simulados.</p>
+          </div>
         </div>
       </div>
 
@@ -638,14 +813,17 @@
             <span class="module-badge">Módulo 3</span>
             <h3>Guardrails, Dados Sigilosos e Segurança Cibernética</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Mecanismos de Guardrails e Segurança Elétrica:</strong> Implementação de barreiras de validação (NeMo Guardrails, Llama Guard, regras determinísticas) para impedir comandos operacionais semanticamente inválidos.</li>
-            <li><strong>Proteção de Infraestrutura Crítica e Dados Sigilosos:</strong> Adequação à LGPD, conformidade com normas de segurança cibernética (NERC CIP / diretrizes ONS) e anonimização de topologias e PII.</li>
-            <li><strong>Prevenção de Ataques e Vazamentos:</strong> Mitigação de Prompt Injection e estratégias de deployment privado/local (Ollama, vLLM, Azure Confidential Computing).</li>
+            <li><strong>Guardrails e segurança elétrica:</strong> Barreiras de validação com NeMo Guardrails, Llama Guard e regras determinísticas para bloquear comandos operacionais inválidos ou fora das restrições.</li>
+            <li><strong>Infraestrutura crítica e dados sigilosos:</strong> LGPD, diretrizes de segurança cibernética para energia e técnicas de anonimização de topologias, dados pessoais e informações industriais.</li>
+            <li><strong>Prevenção de ataques e vazamentos:</strong> Mitigação de prompt injection, proteção contra exposição de dados em APIs externas e estratégias de implantação privada ou local com Ollama, vLLM e computação confidencial.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Camada de guardrails com regras determinísticas, tratamento de dados sensíveis e conjunto de testes para avaliar respostas seguras em cenários simulados do setor elétrico.</p>
+          </div>
         </div>
       </div>
 
@@ -656,14 +834,17 @@
             <span class="module-badge">Módulo 4</span>
             <h3>Agentes para Análise, Operação e Centros de Controle</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Orquestração de Simulações de Redes:</strong> Agentes para montagem automática de casos, execução e convergência de fluxo de potência e curto-circuito (OpenDSS, PyPSA, ANAREDE/ANAFAS).</li>
-            <li><strong>Análise de Contingências N-1 / N-2 com Guardrails:</strong> Automação de varredura de contingências, ranqueamento de severidade e geração de pareceres explicativos.</li>
-            <li><strong>Copilotos de Operação em Linguagem Natural:</strong> Assistentes para interface com SCADA/EMS, consulta rápida a alarmes operacionais e navegação em manuais dos centros de controle.</li>
+            <li><strong>Orquestração de simulações de redes:</strong> Montagem automatizada de casos e execução de estudos de fluxo de potência e curto-circuito em OpenDSS, PyPSA, ANAREDE e ANAFAS.</li>
+            <li><strong>Análise de contingências N-1/N-2 com guardrails:</strong> Varredura de contingências, classificação de severidade e geração de pareceres explicáveis dentro de restrições operacionais.</li>
+            <li><strong>Copilotos para centros de controle:</strong> Interfaces em linguagem natural para consulta a alarmes SCADA/EMS e busca em manuais operacionais do ONS e de concessionárias.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Fluxo de análise de contingências que executa estudos em uma rede de teste e gera relatório priorizado com resultados, justificativas e limites operacionais considerados.</p>
+          </div>
         </div>
       </div>
 
@@ -674,14 +855,17 @@
             <span class="module-badge">Módulo 5</span>
             <h3>Agentes RAG, Auditoria e Explicabilidade em Mercado e Regulação</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Arquiteturas RAG Híbridas Especializadas:</strong> Chunking inteligente e busca semântica em acervos regulatórios extensos (Procedimentos de Rede, Resoluções ANEEL e Regras CCEE).</li>
-            <li><strong>Auditoria e Trilha de Rastreabilidade (Audit Trail):</strong> Registro imutável do processo de raciocínio (Chain-of-Thought) em transações financeiras e pareceres.</li>
-            <li><strong>Agentes para Contratos, Leilões e Risco:</strong> Verificação de conformidade em enquadramento tarifário (TUST/TUSD), análise de riscos em derivativos e negociação assistida no ACL e ACR.</li>
+            <li><strong>Arquiteturas RAG híbridas especializadas:</strong> Segmentação inteligente e busca semântica em Procedimentos de Rede, resoluções da ANEEL e regras da CCEE.</li>
+            <li><strong>Auditoria e trilha de rastreabilidade:</strong> Registro verificável das fontes, etapas e decisões dos agentes em transações financeiras e análises regulatórias.</li>
+            <li><strong>Contratos, leilões e risco:</strong> Verificação de enquadramento tarifário (TUST/TUSD), análise de riscos em derivativos e apoio à negociação nos mercados livre (ACL) e regulado (ACR).</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Assistente RAG para consulta a documentos regulatórios, com respostas vinculadas às fontes e geração de trilha de auditoria para revisão humana.</p>
+          </div>
         </div>
       </div>
 
@@ -692,14 +876,17 @@
             <span class="module-badge">Módulo 6</span>
             <h3>Agentes para Proteção, Oscilografia, QEE e Subestações</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Diagnóstico Autônomo e Explicável de Perturbações:</strong> Leitura de arquivos COMTRADE para análise de oscilografia e verificação de atuação de relés (funções 50, 51, 21, 87, etc.).</li>
-            <li><strong>Validação de Configurações IEC 61850:</strong> Agentes para verificação de arquivos SCL/SCD, diagnóstico de mensagens GOOSE/SV e conformidade técnica.</li>
-            <li><strong>Análise de QEE e PRODIST:</strong> Classificação automatizada de distúrbios de Qualidade da Energia Elétrica (afundamentos, harmônicos) e emissão de pareceres regulatórios.</li>
+            <li><strong>Diagnóstico de perturbações:</strong> Análise de oscilografias COMTRADE e verificação de atuação de relés (funções 50, 51, 21 e 87), com geração de laudos rastreáveis.</li>
+            <li><strong>Validação de configurações IEC 61850:</strong> Verificação de arquivos SCL/SCD, consistência de mensagens GOOSE/SV e conformidade de esquemas de proteção.</li>
+            <li><strong>Qualidade da energia e PRODIST:</strong> Classificação de afundamentos, harmônicos e outros distúrbios, com geração de relatórios de conformidade regulatória.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Ferramenta de apoio ao diagnóstico que processa arquivos COMTRADE de exemplo e produz relatório explicável de eventos, atuação de proteção ou indicadores de qualidade de energia.</p>
+          </div>
         </div>
       </div>
 
@@ -710,14 +897,17 @@
             <span class="module-badge">Módulo 7</span>
             <h3>Ecossistemas Multiagentes em Estabilidade, Controle e Renováveis</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Sistemas Multiagentes (MAS) Descentralizados:</strong> Coordenação entre agentes para sintonia adaptativa de PSS, AVR e conversores em redes com alta penetração de renováveis.</li>
-            <li><strong>Gestão Agêntica de Usinas Híbridas e BESS:</strong> Tomada de decisão em tempo real para otimização de despacho (Solar + Eólica + BESS) e gerenciamento de microredes.</li>
-            <li><strong>Modelos Preditivos de Demanda e Clima:</strong> Integração a modelos estocásticos para previsão multivariada de geração sob incertezas climáticas.</li>
+            <li><strong>Sistemas multiagentes descentralizados:</strong> Coordenação de agentes para sintonia adaptativa de PSS, AVR e conversores em redes com alta participação de fontes renováveis.</li>
+            <li><strong>Usinas híbridas e armazenamento:</strong> Apoio à otimização de despacho de sistemas solar, eólico e BESS e ao gerenciamento de microrredes.</li>
+            <li><strong>Previsão de demanda e clima:</strong> Integração com modelos estatísticos e bayesianos para previsão multivariada de geração sob incertezas climáticas.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Painel experimental de previsão e apoio ao despacho de recursos renováveis e armazenamento, com cenários de incerteza testados em microrrede simulada.</p>
+          </div>
         </div>
       </div>
 
@@ -728,13 +918,16 @@
             <span class="module-badge">Módulo 8</span>
             <h3>Projeto Integrador (Capstone) e Validação Industrial</h3>
           </div>
-          <div class="accordion-toggle">+</div>
         </div>
         <div class="accordion-content">
           <ul>
-            <li><strong>Desenvolvimento End-to-End com Foco Industrial:</strong> Implementação de uma solução agêntica completa voltada a um problema real do setor elétrico.</li>
-            <li><strong>Avaliação de Confiabilidade e Benchmarking:</strong> Frameworks de avaliação (LLM-as-a-Judge, Ragas), métricas de latência, taxa de alucinação e validação em ambiente simulado.</li>
+            <li><strong>Desenvolvimento de solução industrial de ponta a ponta:</strong> Projeto aplicado a um desafio real, como assistente operacional de subestação, auditor regulatório com trilha de auditoria ou diagnóstico de falhas COMTRADE.</li>
+            <li><strong>Confiabilidade e benchmarking:</strong> Avaliação com LLM-as-a-Judge e Ragas, métricas de latência e alucinação, análise de segurança cibernética e validação técnica em ambiente simulado.</li>
           </ul>
+          <div class="module-product">
+            <strong>Produto possível</strong>
+            <p>Projeto integrador demonstrável e documentado — como copiloto de operação, auditor regulatório ou diagnosticador de falhas — acompanhado de testes, métricas, avaliação de riscos e validação em simulação.</p>
+          </div>
         </div>
       </div>
 
@@ -745,60 +938,36 @@
   <section class="info-grid" id="requisitos">
     <div class="info-card">
       <h3>🎯 Público-Alvo</h3>
-      <p>Engenheiros, pesquisadores, gestores e especialistas do setor elétrico que buscam dominar a aplicação prática e segura de IA Generativa e Agentes de LLM no contexto de infraestruturas críticas de energia.</p>
+      <p>Engenheiros eletricistas que já concluíram o curso original de Especialização em Sistemas Elétricos (CESE) da UNIFEI e desejam avançar para a aplicação de IA no setor elétrico. Também é voltado a pesquisadores, docentes e profissionais de energia, dados e tecnologia com formação equivalente em sistemas elétricos de potência.</p>
     </div>
     <div class="info-card">
       <h3>📋 Pré-requisitos Recomendados</h3>
       <ul>
-        <li>Domínio prévio de conceitos de fluxo de potência, estabilidade e operação de SEP.</li>
-        <li>Conhecimento regulatório básico (ANEEL, CCEE, ONS).</li>
-        <li>Conhecimento intermediário de programação em Python.</li>
+        <li>Conclusão do CESE original da UNIFEI ou formação equivalente com domínio de sistemas elétricos de potência.</li>
+        <li>Conhecimentos de fluxo de potência, estabilidade, proteção, operação e regulação do setor elétrico.</li>
+        <li>Conhecimento intermediário de programação em Python é recomendado para as atividades práticas.</li>
       </ul>
     </div>
   </section>
 
   <!-- CTA Banner -->
-  <section class="cta-banner" id="inscrever">
+  <section class="cta-banner" id="novidades">
     <div class="cta-inner">
-      <h2>Transforme a Operação do Setor Elétrico</h2>
-      <p>Inscreva-se na turma do CESE-IA e lidere a revolução dos agentes inteligentes em sistemas de potência.</p>
-      <a href="#" class="btn-primary">Matricular-se Agora</a>
+      <h2>Inscrições em breve</h2>
+      <p>Estamos preparando a próxima turma do CESE-IA. Em breve, divulgaremos novidades e informações sobre o processo de inscrição.</p>
+      <span class="btn-primary coming-soon">Em breve</span>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p><strong>CESE-IA</strong> — Curso de Especialização em Sistemas Elétricos com Agentes de IA</p>
-    <p>© 2026 Todos os direitos reservados. Design inspirado no ecossistema NeoSpace.</p>
+    <p><img src="CESE-IA.png" alt="" class="footer-logo"> <strong>CESE-IA</strong> — Curso de Especialização em Sistemas Elétricos com Agentes de IA</p>
+    <p>© 2026 CESE-IA <a href="https://www.unifei.edu.br" target="_blank" rel="noopener noreferrer">UNIFEI</a> Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Vanilla JS Client-Side Interactivity -->
+  <!-- Smooth scrolling for navigation links -->
   <script>
-    // Accordion Toggle Functionality
     document.addEventListener('DOMContentLoaded', () => {
-      const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-      accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-          const item = header.parentElement;
-          const isActive = item.classList.contains('active');
-
-          // Fechar todos os itens se desejar comportamento exclusivo (descomente abaixo se preferir)
-          /*
-          document.querySelectorAll('.accordion-item').forEach(i => {
-            i.classList.remove('active');
-          });
-          */
-
-          if (isActive) {
-            item.classList.remove('active');
-          } else {
-            item.classList.add('active');
-          }
-        });
-      });
-
-      // Smooth scrolling for navigation links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
