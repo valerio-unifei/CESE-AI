@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CESE-IA | Especialização em Agentes de IA em Sistemas Elétricos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #05070f;
+      --bg-card: rgba(15, 23, 42, 0.65);
+      --bg-card-hover: rgba(30, 41, 59, 0.8);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(124, 58, 237, 0.4);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --grad-primary: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #06b6d4 100%);
+      --grad-dark: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(5, 7, 15, 1) 100%);
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Background Orbs */
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .orb-1 {
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, #7c3aed 0%, rgba(6, 182, 212, 0) 70%);
+    }
+
+    .orb-2 {
+      top: 1200px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #2563eb 0%, rgba(0,0,0,0) 70%);
+    }
+
+    /* Header Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(5, 7, 15, 0.7);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.6rem;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 0.6rem 1.4rem;
+      border-radius: 99px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--text-main);
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 10rem 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 99px;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #c084fc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-gradient {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-weight: 400;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--grad-primary);
+      color: #fff;
+      padding: 1rem 2.2rem;
+      border-radius: 99px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(124, 58, 237, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 1rem 2.2rem;
+      border-radius: 99px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Highlights Section */
+    .highlights {
+      max-width: 1280px;
+      margin: 2rem auto 8rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(139, 92, 246, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    .card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Syllabus / Accordion Section */
+    .syllabus-section {
+      max-width: 1000px;
+      margin: 0 auto 8rem;
+      padding: 0 2rem;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .accordion-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .accordion-item.active {
+      border-color: var(--accent-purple);
+      background: rgba(20, 28, 48, 0.8);
+    }
+
+    .accordion-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .accordion-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .module-badge {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      white-space: nowrap;
+    }
+
+    .accordion-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .accordion-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .accordion-item.active .accordion-toggle {
+      transform: rotate(45deg);
+      background: var(--accent-purple);
+      color: #fff;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      padding: 0 2rem;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 1000px;
+      transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+      padding: 0 2rem 1.8rem;
+    }
+
+    .accordion-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.2rem;
+    }
+
+    .accordion-content li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .accordion-content li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent-purple);
+      font-weight: bold;
+    }
+
+    .accordion-content li strong {
+      color: var(--text-main);
+    }
+
+    /* Target Audience & Prerequisites */
+    .info-grid {
+      max-width: 1100px;
+      margin: 0 auto 8rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-card {
+      background: linear-gradient(145deg, rgba(15,23,42,0.8), rgba(5,7,15,0.9));
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 2.5rem;
+    }
+
+    .info-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .info-card p, .info-card ul {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .info-card ul {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .info-card li::before {
+      content: "✓";
+      color: var(--accent-cyan);
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    /* CTA Section */
+    .cta-banner {
+      max-width: 1100px;
+      margin: 0 auto 8rem;
+      padding: 0 2rem;
+    }
+
+    .cta-inner {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: 32px;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .cta-inner h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-inner p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-badge">CESE-IA</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#pilares">Diferenciais</a></li>
+        <li><a href="#ementa">Ementa Completa</a></li>
+        <li><a href="#requisitos">Público & Requisitos</a></li>
+      </ul>
+      <a href="#inscrever" class="btn-nav">Inscrições Abertas</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-pill">Pós-Graduação & Especialização Avançada</div>
+    <h1 class="hero-title">
+      Sistemas Elétricos de Potência com <span class="text-gradient">Agentes de IA</span>
+    </h1>
+    <p class="hero-subtitle">
+      Capacitação executiva e técnica para integrar LLMs, ecossistemas multiagentes, RAG e guardrails determinísticos à operação, regulação, proteção e planejamento do setor elétrico.
+    </p>
+    <div class="hero-ctas">
+      <a href="#inscrever" class="btn-primary">Garantir Minha Vaga</a>
+      <a href="#ementa" class="btn-secondary">Explorar os 8 Módulos</a>
+    </div>
+  </section>
+
+  <!-- Key Highlights -->
+  <section class="highlights" id="pilares">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Automação & Simulação</h3>
+      <p>Integração direta de LLMs com motores de cálculo como OpenDSS, PyPSA, ANAREDE e ANAFAS via <em>Tool Use</em>.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Guardrails & Segurança</h3>
+      <p>Sistemas de validação em tempo de execução para evitar comandos violadores em infraestruturas críticas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔄</div>
+      <h3>Interoperabilidade Legada</h3>
+      <p>Adoção dos padrões CIM (IEC 61970/61968), IEC 61850, protocolo MCP e comunicação via Kafka/gRPC.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📜</div>
+      <h3>RAG & Auditoria Regulatória</h3>
+      <p>Trilhas imutáveis de decisão (*Chain-of-Thought*) para auditorias da ANEEL, CCEE, ONS e Mercado Livre.</p>
+    </div>
+  </section>
+
+  <!-- Syllabus Accordion Section -->
+  <section class="syllabus-section" id="ementa">
+    <div class="section-header">
+      <h2 class="section-title">Ementa do Curso CESE-IA</h2>
+      <p class="section-subtitle">Grade curricular estruturada do conceito aos ecossistemas industriais avançados.</p>
+    </div>
+
+    <div class="accordion">
+
+      <!-- Módulo 1 -->
+      <div class="accordion-item active">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 1</span>
+            <h3>Fundamentos de Arquiteturas de Agentes e LLMs para Engenharia</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Engenharia de Prompts e Saídas Estruturadas:</strong> Formatação e validação rigorosa de saídas (JSON, Pydantic) para garantir determinismo e interpretação exata de parâmetros de engenharia.</li>
+            <li><strong>Tool Use e Function Calling:</strong> Conexão de LLMs a motores de cálculo elétrico, APIs de campo e bancos de dados relacionais e vetoriais.</li>
+            <li><strong>Padrões de Raciocínio Agêntico:</strong> Arquiteturas ReAct, Plan-and-Solve, memória operacional, auto-reflexão, correção autônoma de código e tratamento de exceções.</li>
+            <li><strong>Frameworks e Orquestração:</strong> Desenvolvimento prático com LangChain, LangGraph, LlamaIndex, CrewAI e AutoGen focados em problemas de energia.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 2 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 2</span>
+            <h3>Interoperabilidade e Integração com Sistemas Elétricos Legados</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Padrões de Dados do Setor Elétrico:</strong> Interoperabilidade baseada no Modelo de Informação Comum — CIM (IEC 61970, IEC 61968) e padronização IEC 61850 em subestações.</li>
+            <li><strong>Protocolos Inter-Agentes:</strong> Implementação do Model Context Protocol (MCP), REST/gRPC e barramentos de mensagens (Kafka, MQTT).</li>
+            <li><strong>Gateways Agênticos para SCADA/EMS e GIS:</strong> Integração segura de agentes com EMS, DMS e geoprocessamento sem comprometer a operação em tempo real.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 3 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 3</span>
+            <h3>Guardrails, Dados Sigilosos e Segurança Cibernética</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Mecanismos de Guardrails e Segurança Elétrica:</strong> Implementação de barreiras de validação (NeMo Guardrails, Llama Guard, regras determinísticas) para impedir comandos operacionais semanticamente inválidos.</li>
+            <li><strong>Proteção de Infraestrutura Crítica e Dados Sigilosos:</strong> Adequação à LGPD, conformidade com normas de segurança cibernética (NERC CIP / diretrizes ONS) e anonimização de topologias e PII.</li>
+            <li><strong>Prevenção de Ataques e Vazamentos:</strong> Mitigação de Prompt Injection e estratégias de deployment privado/local (Ollama, vLLM, Azure Confidential Computing).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 4 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 4</span>
+            <h3>Agentes para Análise, Operação e Centros de Controle</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Orquestração de Simulações de Redes:</strong> Agentes para montagem automática de casos, execução e convergência de fluxo de potência e curto-circuito (OpenDSS, PyPSA, ANAREDE/ANAFAS).</li>
+            <li><strong>Análise de Contingências N-1 / N-2 com Guardrails:</strong> Automação de varredura de contingências, ranqueamento de severidade e geração de pareceres explicativos.</li>
+            <li><strong>Copilotos de Operação em Linguagem Natural:</strong> Assistentes para interface com SCADA/EMS, consulta rápida a alarmes operacionais e navegação em manuais dos centros de controle.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 5 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 5</span>
+            <h3>Agentes RAG, Auditoria e Explicabilidade em Mercado e Regulação</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Arquiteturas RAG Híbridas Especializadas:</strong> Chunking inteligente e busca semântica em acervos regulatórios extensos (Procedimentos de Rede, Resoluções ANEEL e Regras CCEE).</li>
+            <li><strong>Auditoria e Trilha de Rastreabilidade (Audit Trail):</strong> Registro imutável do processo de raciocínio (Chain-of-Thought) em transações financeiras e pareceres.</li>
+            <li><strong>Agentes para Contratos, Leilões e Risco:</strong> Verificação de conformidade em enquadramento tarifário (TUST/TUSD), análise de riscos em derivativos e negociação assistida no ACL e ACR.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 6 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 6</span>
+            <h3>Agentes para Proteção, Oscilografia, QEE e Subestações</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Diagnóstico Autônomo e Explicável de Perturbações:</strong> Leitura de arquivos COMTRADE para análise de oscilografia e verificação de atuação de relés (funções 50, 51, 21, 87, etc.).</li>
+            <li><strong>Validação de Configurações IEC 61850:</strong> Agentes para verificação de arquivos SCL/SCD, diagnóstico de mensagens GOOSE/SV e conformidade técnica.</li>
+            <li><strong>Análise de QEE e PRODIST:</strong> Classificação automatizada de distúrbios de Qualidade da Energia Elétrica (afundamentos, harmônicos) e emissão de pareceres regulatórios.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 7 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 7</span>
+            <h3>Ecossistemas Multiagentes em Estabilidade, Controle e Renováveis</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Sistemas Multiagentes (MAS) Descentralizados:</strong> Coordenação entre agentes para sintonia adaptativa de PSS, AVR e conversores em redes com alta penetração de renováveis.</li>
+            <li><strong>Gestão Agêntica de Usinas Híbridas e BESS:</strong> Tomada de decisão em tempo real para otimização de despacho (Solar + Eólica + BESS) e gerenciamento de microredes.</li>
+            <li><strong>Modelos Preditivos de Demanda e Clima:</strong> Integração a modelos estocásticos para previsão multivariada de geração sob incertezas climáticas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Módulo 8 -->
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-title-wrap">
+            <span class="module-badge">Módulo 8</span>
+            <h3>Projeto Integrador (Capstone) e Validação Industrial</h3>
+          </div>
+          <div class="accordion-toggle">+</div>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Desenvolvimento End-to-End com Foco Industrial:</strong> Implementação de uma solução agêntica completa voltada a um problema real do setor elétrico.</li>
+            <li><strong>Avaliação de Confiabilidade e Benchmarking:</strong> Frameworks de avaliação (LLM-as-a-Judge, Ragas), métricas de latência, taxa de alucinação e validação em ambiente simulado.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Target & Prerequisites -->
+  <section class="info-grid" id="requisitos">
+    <div class="info-card">
+      <h3>🎯 Público-Alvo</h3>
+      <p>Engenheiros, pesquisadores, gestores e especialistas do setor elétrico que buscam dominar a aplicação prática e segura de IA Generativa e Agentes de LLM no contexto de infraestruturas críticas de energia.</p>
+    </div>
+    <div class="info-card">
+      <h3>📋 Pré-requisitos Recomendados</h3>
+      <ul>
+        <li>Domínio prévio de conceitos de fluxo de potência, estabilidade e operação de SEP.</li>
+        <li>Conhecimento regulatório básico (ANEEL, CCEE, ONS).</li>
+        <li>Conhecimento intermediário de programação em Python.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner" id="inscrever">
+    <div class="cta-inner">
+      <h2>Transforme a Operação do Setor Elétrico</h2>
+      <p>Inscreva-se na turma do CESE-IA e lidere a revolução dos agentes inteligentes em sistemas de potência.</p>
+      <a href="#" class="btn-primary">Matricular-se Agora</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>CESE-IA</strong> — Curso de Especialização em Sistemas Elétricos com Agentes de IA</p>
+    <p>© 2026 Todos os direitos reservados. Design inspirado no ecossistema NeoSpace.</p>
+  </footer>
+
+  <!-- Vanilla JS Client-Side Interactivity -->
+  <script>
+    // Accordion Toggle Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+      accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+          const item = header.parentElement;
+          const isActive = item.classList.contains('active');
+
+          // Fechar todos os itens se desejar comportamento exclusivo (descomente abaixo se preferir)
+          /*
+          document.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('active');
+          });
+          */
+
+          if (isActive) {
+            item.classList.remove('active');
+          } else {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
